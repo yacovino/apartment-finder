@@ -33,49 +33,6 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-areas = ["eby", "nby", "sfc", "sby"]
-
-bart_stations = {
-    "oakland_19th": [37.8118051,-122.2720873],
-    "macarthur": [37.8265657,-122.2686705],
-    "rockridge": [37.841286,-122.2566329],
-    "downtown_berkeley": [37.8629541,-122.276594],
-    "north_berkeley": [37.8713411,-122.2849758]
-}
-
-neighborhoods = ["berkeley north", "berkeley", "rockridge", "adams point", "oakland lake merritt", "cow hollow", "piedmont", "pac hts", "pacific heights"]
-
-boxes = {
-    "adams_point": [
-        [37.81589,	-122.26081],
-        [37.80789, -122.25000]
-    ],
-    "piedmont": [
-        [37.83237, -122.25386],
-        [37.82240, -122.24768]
-    ],
-    "rockridge": [
-        [37.84680, -122.25944],
-        [37.83826, -122.24073]
-    ],
-    "berkeley": [
-        [37.86781, -122.26502],
-        [37.86226, -122.25043]
-    ],
-    "north_berkeley": [
-        [37.87655, -122.28974],
-        [37.86425, -122.26330]
-    ],
-    "pac_heights": [
-        [37.79850, -122.44784],
-        [37.79124, -122.42381]
-    ],
-    "lower_pac_heights": [
-        [37.78873, -122.44544],
-        [37.78554, -122.42878]
-    ]
-}
-
 def coord_distance(lat1, lon1, lat2, lon2):
     lon1, lat1, lon2, lat2 = map(math.radians, [lon1, lat1, lon2, lat2])
     dlon = lon2 - lon1
@@ -110,12 +67,12 @@ def scrape_area(area):
             lat = 0
             lon = 0
             if result["geotag"] is not None:
-                for a, coords in boxes.items():
+                for a, coords in settings.BOXES.items():
                     if in_box(result["geotag"], coords):
                         area = a
                         result["area_found"] = True
 
-                for station, coords in bart_stations.items():
+                for station, coords in settings.BART_STATIONS.items():
                     dist = coord_distance(coords[0], coords[1], result["geotag"][0], result["geotag"][1])
                     if (min_dist is None or dist < min_dist) and dist < settings.MAX_BART_DIST:
                         bart = station
@@ -128,7 +85,7 @@ def scrape_area(area):
                 lon = result["geotag"][1]
 
             if len(area) == 0:
-                for hood in neighborhoods:
+                for hood in settings.NEIGHBORHOODS:
                     if hood in result["where"].lower():
                         area = hood
 
@@ -170,7 +127,7 @@ sc = SlackClient(settings.SLACK_TOKEN)
 
 def do_scrape():
     all_results = []
-    for area in areas:
+    for area in settings.AREAS:
         all_results += scrape_area(area)
 
     for result in all_results:
