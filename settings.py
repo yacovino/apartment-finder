@@ -1,7 +1,7 @@
 MAX_BART_DIST = 2
-SLEEP_INTERVAL = 60 * 60 # 1 hour
+SLEEP_INTERVAL = 20 * 60 # 20 mins
 
-AREAS = ["eby", "sfc"] # , "sby", "nby",
+AREAS = ["eby", "sfc", "sby"] # "nby",
 
 BART_STATIONS = {
     "oakland_19th": [37.8118051,-122.2720873],
@@ -11,7 +11,7 @@ BART_STATIONS = {
     "north_berkeley": [37.8713411,-122.2849758]
 }
 
-NEIGHBORHOODS = ["berkeley north", "berkeley", "rockridge", "adams point", "oakland lake merritt", "cow hollow", "piedmont", "pac hts", "pacific heights"]
+NEIGHBORHOODS = ["berkeley north", "berkeley", "rockridge", "adams point", "oakland lake merritt", "cow hollow", "piedmont", "pac hts", "pacific heights", "lower haight", "inner sunset", "outer sunset", "presidio", "palo alto", "richmond / seacliff", "haight ashbury"]
 
 BOXES = {
     "adams_point": [
@@ -41,6 +41,22 @@ BOXES = {
     "lower_pac_heights": [
         [37.78873, -122.44544],
         [37.78554, -122.42878]
+    ],
+    "haight": [
+        [37.77086, -122.45401],
+        [37.77059, -122.42688]
+    ],
+    "sunset": [
+        [37.76258, -122.50825],
+        [37.75451, -122.46422]
+    ],
+    "richmond": [
+        [37.78029, -122.51005],
+        [37.77188, -122.47263]
+    ],
+    "presidio": [
+        [37.78829, -122.47151],
+        [37.77805, -122.43959]
     ]
 }
 
