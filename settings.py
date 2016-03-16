@@ -1,7 +1,7 @@
 MAX_BART_DIST = 2
 SLEEP_INTERVAL = 60 * 60 # 1 hour
 
-AREAS = ["eby", "nby", "sfc", "sby"]
+AREAS = ["eby", "sfc"] # , "sby", "nby", 
 
 BART_STATIONS = {
     "oakland_19th": [37.8118051,-122.2720873],

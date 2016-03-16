@@ -52,7 +52,14 @@ def scrape_area(area):
                              filters={'max_price': 2800, "min_price": 1800})
 
     results = []
-    for result in cl_h.get_results(sort_by='newest', geotagged=True, limit=100):
+    gen = cl_h.get_results(sort_by='newest', geotagged=True, limit=100)
+    while True:
+        try:
+            result = next(gen)
+        except StopIteration:
+            break
+        except Exception:
+            continue
         listing = session.query(Listing).filter_by(cl_id=result["id"]).first()
         if listing is None:
             area = ""
