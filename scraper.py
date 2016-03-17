@@ -49,10 +49,10 @@ def in_box(coords, box):
 
 def scrape_area(area):
     cl_h = CraigslistHousing(site='sfbay', area=area, category='apa',
-                             filters={'max_price': 2800, "min_price": 1800})
+                             filters={'max_price': settings.MAX_PRICE, "min_price": settings.MIN_PRICE})
 
     results = []
-    gen = cl_h.get_results(sort_by='newest', geotagged=True, limit=100)
+    gen = cl_h.get_results(sort_by='newest', geotagged=True, limit=20)
     while True:
         try:
             result = next(gen)
@@ -126,7 +126,7 @@ def scrape_area(area):
 def post_listing_to_slack(sc, listing):
     desc = "{0} | {1} | {2} | {3} | <{4}>".format(listing["area"], listing["price"], listing["bart_dist"], listing["name"], listing["url"])
     sc.api_call(
-        "chat.postMessage", channel="#housing", text=desc,
+        "chat.postMessage", channel=settings.SLACK_CHANNEL, text=desc,
         username='pybot', icon_emoji=':robot_face:'
     )
 
