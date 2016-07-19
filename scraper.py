@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean
 from sqlalchemy.orm import sessionmaker
 from dateutil.parser import parse
-import math
+from util import post_listing_to_slack, find_points_of_interest
 from slackclient import SlackClient
 import settings
 
@@ -13,6 +13,10 @@ engine = create_engine('sqlite:///listings.db', echo=False)
 Base = declarative_base()
 
 class Listing(Base):
+    """
+    A table to store data on craigslist listings.
+    """
+
     __tablename__ = 'listings'
 
     id = Column(Integer, primary_key=True)
@@ -33,21 +37,12 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-def coord_distance(lat1, lon1, lat2, lon2):
-    lon1, lat1, lon2, lat2 = map(math.radians, [lon1, lat1, lon2, lat2])
-    dlon = lon2 - lon1
-    dlat = lat2 - lat1
-    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2
-    c = 2 * math.asin(math.sqrt(a))
-    km = 6367 * c
-    return km
-
-def in_box(coords, box):
-    if box[1][0] < coords[0] < box[0][0] and box[0][1] < coords[1] < box[1][1]:
-        return True
-    return False
-
 def scrape_area(area):
+    """
+    Scrapes craigslist for a certain geographic area, and finds the latest listings.
+    :param area:
+    :return: A list of results.
+    """
     cl_h = CraigslistHousing(site='sfbay', area=area, category='apa',
                              filters={'max_price': settings.MAX_PRICE, "min_price": settings.MIN_PRICE})
 
@@ -61,46 +56,32 @@ def scrape_area(area):
         except Exception:
             continue
         listing = session.query(Listing).filter_by(cl_id=result["id"]).first()
+
+        # Don't store the lsiting if it already exists.
         if listing is None:
-            area = ""
             if result["where"] is None:
+                # If there is no string identifying which neighborhood the result is from, skip it.
                 continue
 
-            result["near_bart"] = False
-            result["area_found"] = False
-            result["bart_dist"] = "N/A"
-            bart = ""
-            min_dist = None
             lat = 0
             lon = 0
             if result["geotag"] is not None:
-                for a, coords in settings.BOXES.items():
-                    if in_box(result["geotag"], coords):
-                        area = a
-                        result["area_found"] = True
-
-                for station, coords in settings.BART_STATIONS.items():
-                    dist = coord_distance(coords[0], coords[1], result["geotag"][0], result["geotag"][1])
-                    if (min_dist is None or dist < min_dist) and dist < settings.MAX_BART_DIST:
-                        bart = station
-                        result["near_bart"] = True
-
-                    if (min_dist is None or dist < min_dist):
-                        result["bart_dist"] = dist
-
+                # Assign the coordinates.
                 lat = result["geotag"][0]
                 lon = result["geotag"][1]
 
-            if len(area) == 0:
-                for hood in settings.NEIGHBORHOODS:
-                    if hood in result["where"].lower():
-                        area = hood
+                # Annotate the result with information about the area it's in and points of interest near it.
+                geo_data = find_points_of_interest(result["geotag"], result["where"])
+                result.update(geo_data)
 
+            # Try parsing the price.
             price = 0
             try:
                 price = float(result["price"].replace("$", ""))
             except Exception:
                 pass
+
+            # Create the listing object.
             listing = Listing(
                 link=result["url"],
                 created=parse(result["datetime"]),
@@ -110,32 +91,33 @@ def scrape_area(area):
                 price=price,
                 location=result["where"],
                 cl_id=result["id"],
-                area=area,
-                bart_stop=bart
+                area=result["area"],
+                bart_stop=result["bart"]
             )
+
+            # Save the listing so we don't grab it again.
             session.add(listing)
             session.commit()
-            result["area"] = area
-            result["bart_stop"] = bart
-            if len(bart) > 0 or len(area) > 0:
+
+            # Return the result if it's near a bart station, or if it is in an area we defined.
+            if len(result["bart"]) > 0 or len(result["area"]) > 0:
                 results.append(result)
 
     return results
 
-
-def post_listing_to_slack(sc, listing):
-    desc = "{0} | {1} | {2} | {3} | <{4}>".format(listing["area"], listing["price"], listing["bart_dist"], listing["name"], listing["url"])
-    sc.api_call(
-        "chat.postMessage", channel=settings.SLACK_CHANNEL, text=desc,
-        username='pybot', icon_emoji=':robot_face:'
-    )
-
-sc = SlackClient(settings.SLACK_TOKEN)
-
 def do_scrape():
+    """
+    Runs the craigslist scraper, and posts data to slack.
+    """
+
+    # Create a slack client.
+    sc = SlackClient(settings.SLACK_TOKEN)
+
+    # Get all the results from craigslist.
     all_results = []
     for area in settings.AREAS:
         all_results += scrape_area(area)
 
+    # Post each result to slack.
     for result in all_results:
         post_listing_to_slack(sc, result)
