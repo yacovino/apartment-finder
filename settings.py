@@ -10,8 +10,14 @@ MAX_PRICE = 2000
 
 ## Location preferences
 
-# What craigslist subdirectories to search on.
+# The Craigslist site you want to search on.
+# For instance, https://sfbay.craigslist.org is SF and the Bay Area.
+# You only need the beginning of the URL.
+CRAIGSLIST_SITE = 'sfbay'
+
+# What Craigslist subdirectories to search on.
 # For instance, https://sfbay.craigslist.org/eby/ is the East Bay, and https://sfbay.craigslist.org/sfc/ is San Francisco.
+# You only need the last three letters of the URLs.
 AREAS = ["eby", "sfc", "sby", "nby"]
 
 # A list of neighborhoods and coordinates that you want to look for apartments in.  Any listing that has coordinates
@@ -85,6 +91,14 @@ TRANSIT_STATIONS = {
     "downtown_berkeley_bart": [37.8629541,-122.276594],
     "north_berkeley_bart": [37.8713411,-122.2849758]
 }
+
+## Search type preferences
+
+# The Craigslist section underneath housing that you want to search in.
+# For instance, https://sfbay.craigslist.org/search/apa find apartments for rent.
+# https://sfbay.craigslist.org/search/sub finds sublets.
+# You only need the last 3 letters of the URLs.
+CRAIGSLIST_HOUSING_SECTION = 'apa'
 
 ## System settings
 

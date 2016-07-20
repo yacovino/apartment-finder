@@ -33,4 +33,7 @@ COPY deployment/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /opt/wwc
 ADD . /opt/wwc/apartment-finder
 
+RUN mkdir -p /opt/wwc/logs
+WORKDIR /opt/wwc/apartment-finder
+
 CMD ["/usr/bin/supervisord"]

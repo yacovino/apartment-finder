@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from dateutil.parser import parse
 from util import post_listing_to_slack, find_points_of_interest
 from slackclient import SlackClient
+import time
 import settings
 
 engine = create_engine('sqlite:///listings.db', echo=False)
@@ -43,7 +44,7 @@ def scrape_area(area):
     :param area:
     :return: A list of results.
     """
-    cl_h = CraigslistHousing(site='sfbay', area=area, category='apa',
+    cl_h = CraigslistHousing(site=settings.CRAIGSLIST_SITE, area=area, category=settings.CRAIGSLIST_HOUSING_SECTION,
                              filters={'max_price': settings.MAX_PRICE, "min_price": settings.MIN_PRICE})
 
     results = []
@@ -73,6 +74,9 @@ def scrape_area(area):
                 # Annotate the result with information about the area it's in and points of interest near it.
                 geo_data = find_points_of_interest(result["geotag"], result["where"])
                 result.update(geo_data)
+            else:
+                result["area"] = ""
+                result["bart"] = ""
 
             # Try parsing the price.
             price = 0
@@ -117,6 +121,8 @@ def do_scrape():
     all_results = []
     for area in settings.AREAS:
         all_results += scrape_area(area)
+
+    print("{}: Got {} results".format(time.ctime(), len(all_results)))
 
     # Post each result to slack.
     for result in all_results:
