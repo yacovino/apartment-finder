@@ -22,14 +22,15 @@ RUN apt-get update && \
               libncurses5-dev \
               zip \
               git-core \
-              supervisor
+              supervisor \
+              sqlite
 
 RUN mkdir -p /tmp
 COPY requirements.txt /tmp/requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
 
 COPY deployment/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /opt/wwc
-ADD cl-rental /opt/wwc
+ADD . /opt/wwc/apartment-finder
 
 CMD ["/usr/bin/supervisord"]
