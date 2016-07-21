@@ -58,7 +58,7 @@ def scrape_area(area):
             continue
         listing = session.query(Listing).filter_by(cl_id=result["id"]).first()
 
-        # Don't store the lsiting if it already exists.
+        # Don't store the listing if it already exists.
         if listing is None:
             if result["where"] is None:
                 # If there is no string identifying which neighborhood the result is from, skip it.

@@ -3,7 +3,7 @@ Apartment finder
 
 This repo contains the code for a bot that will scrape Craigslist for real-time listings matching specific criteria, then alert you in Slack.  This will let you quickly see the best new listings, and contact the owners.  You can adjust the settings to change your price range, what neighborhoods you want to look in, and what transit stations and other points of interest you'd like to be close to.
 
-It's recommended to use Docker to run the program.
+It's recommended to follow the Docker installation and usage instructions.
 
 Settings
 --------------------
@@ -41,11 +41,12 @@ Installation + Usage
 
 ## Docker
 
+* Make sure to do the steps in the configuration section above first.
 * Install Docker by following [these instructions](https://docs.docker.com/engine/installation/).
 * To run the program with the default configuration:
     * `docker run -d -e SLACK_TOKEN={YOUR_SLACK_TOKEN} dataquestio/apartment-finder`
 * To run the program with your own configuration:
-    * `docker run -d -e SLACK_TOKEN={YOUR_SLACK_TOKEN} -v {PATH_TO_YOUR_CONFIG_FOLDER}:/opt/wwc/apartment-finder/config dataquestio/apartment-finder`
+    * `docker run -d -e SLACK_TOKEN={YOUR_SLACK_TOKEN} -v {ABSOLUTE_PATH_TO_YOUR_CONFIG_FOLDER}:/opt/wwc/apartment-finder/config dataquestio/apartment-finder`
     
 ## Manual
 
@@ -73,4 +74,4 @@ Deploying
 ---------------------
 
 * Create a server that has Docker installed.
-* Follow the configuration + installation instructions for docker above.
+* Follow the configuration + installation instructions for Docker above.
