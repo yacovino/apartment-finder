@@ -74,7 +74,7 @@ Installation + Usage
 * Look in the `Dockerfile`, and make sure you install any of the apt packages listed there.
 * Install Python 3 using Anaconda or another method.
 * Install the Python requirements with `pip install -r requirements.txt`.
-* Run the program with `python main_loop.py`.
+* Run the program with `python main_loop.py`. Results will be posted to your #Housing channel if successful.
 
 Troubleshooting
 ---------------------
