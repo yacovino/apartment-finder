@@ -32,7 +32,7 @@ class Listing(Base):
     cl_id = Column(Integer, unique=True)
     area = Column(String)
     bart_stop = Column(String)
-    bedrooms = Column(Integer)
+    #bedrooms = Column(Integer)
 
 Base.metadata.create_all(engine)
 
@@ -46,7 +46,7 @@ def scrape_area(area):
     :return: A list of results.
     """
     cl_h = CraigslistHousing(site=settings.CRAIGSLIST_SITE, area=area, category=settings.CRAIGSLIST_HOUSING_SECTION,
-                             filters={'max_price': settings.MAX_PRICE, "min_price": settings.MIN_PRICE, 'bedrooms': settings.BEDROOMS})
+                             filters={'max_price': settings.MAX_PRICE, "min_price": settings.MIN_PRICE, "bedrooms": settings.BEDROOMS})
 
     results = []
     gen = cl_h.get_results(sort_by='newest', geotagged=True, limit=20)
@@ -97,8 +97,8 @@ def scrape_area(area):
                 location=result["where"],
                 cl_id=result["id"],
                 area=result["area"],
-                bart_stop=result["bart"],
-                bedrooms=result["bedrooms"]
+                bart_stop=result["bart"]#,
+                #bedrooms=result["bedrooms"]
             )
 
             # Save the listing so we don't grab it again.
