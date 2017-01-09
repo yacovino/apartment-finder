@@ -242,7 +242,7 @@ CRAIGSLIST_HOUSING_SECTION = 'nfa'
 SLEEP_INTERVAL = 20 * 60 # 20 minutes
 
 # Which slack channel to post the listings into.
-SLACK_CHANNEL = "#housing"
+SLACK_CHANNEL = "#1_bed_apartments"
 
 # The token that allows us to connect to slack.
 # Should be put in private.py, or set as an environment variable.
