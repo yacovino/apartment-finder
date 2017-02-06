@@ -3,15 +3,15 @@ import os
 ## Price
 
 # The minimum rent you want to pay per month.
-MIN_PRICE = 1500
+MIN_PRICE = 1000
 
 # The maximum rent you want to pay per month.
-MAX_PRICE = 2000
+MAX_PRICE = 1700
 
 ## Bedrooms
 
 # Number of bedrooms
-BEDROOMS = 1
+#BEDROOMS = 1
 
 ## Location preferences
 
@@ -30,14 +30,14 @@ AREAS = ["brk"]
 # name.  If no match, the neighborhood field, which is a string, will be checked to see if it matches
 # anything in NEIGHBORHOODS.
 BOXES = {
-    "park_slope": [
-        [40.657472,     -73.992406],
-        [40.684611,     -73.970175],
-    ],
-    "gowanus": [
-        [40.66508,      -73.997211],
-        [40.678165,     -73.984938],
-    ],
+#    "park_slope": [
+ #       [40.657472,     -73.992406],
+  #      [40.684611,     -73.970175],
+   # ],
+    #"gowanus": [
+     #   [40.66508,      -73.997211],
+      #  [40.678165,     -73.984938],
+#    ],
     "prospect_heights": [
         [40.671004,     -73.97275],
         [40.681875,     -73.959618],
@@ -57,78 +57,79 @@ BOXES = {
     "west_bed_stuy": [
         [40.67875,      -73.959446],
         [40.694745,     -73.947344],
-    ],
-    "south_slope": [
-        [40.642875,     -73.987341],
-        [40.660913,     -73.970947],
-    ],
-    "boerum hill": [
-        [40.680638,     -73.994293],
-        [40.690344,     -73.977975],
-    ],
-    "carroll gardens": [
-        [40.671976,     -74.00341],
-        [40.686447,     -73.989144],
-    ],
-    "cobble hill": [
-        [40.683754,     -74.0007037],
-        [40.6915438,    -73.9923513],
-    ],
-    "downtown brooklyn": [
-        [40.686561,     -73.992383],
-        [40.701431,     -73.978586],
-    ],
-    "brooklyn heights": [
-        [40.689705,     -74.000205],
-        [40.703001,     -73.990441],
-    ],
-    "dumbo": [
-        [40.7014434,    -73.9945775],
-        [40.7055669,    -73.9845085],
-    ],
-    "ditmas park": [
-        [40.637225,     -73.972728],
-        [40.64649,      -73.964725],
-    ],
-    "west lefferts gardens": [
-        [40.65572,      -73.962728],
-        [40.662068,     -73.956592],
-    ],
-    "kensington": [
-        [40.630663,     -73.980232],
-        [40.650006,     -73.97099],
-    ],
-    "prospect park south": [
-        [40.643559,     -73.971234],
-        [40.650592,     -73.964124],
-    ]
+    ]#,
+#    "south_slope": [
+ #       [40.642875,     -73.987341],
+  #      [40.660913,     -73.970947],
+#    ],
+#    "boerum hill": [
+#        [40.680638,     -73.994293],
+#        [40.690344,     -73.977975],
+#    ],
+#    "carroll gardens": [
+#        [40.671976,     -74.00341],
+#        [40.686447,     -73.989144],
+#    ],
+#    "cobble hill": [
+#        [40.683754,     -74.0007037],
+#        [40.6915438,    -73.9923513],
+#    ],
+#    "downtown brooklyn": [
+#        [40.686561,     -73.992383],
+#        [40.701431,     -73.978586],
+#    ],
+#    "brooklyn heights": [
+#        [40.689705,     -74.000205],
+#        [40.703001,     -73.990441],
+#    ],
+#    "dumbo": [
+#        [40.7014434,    -73.9945775],
+#        [40.7055669,    -73.9845085],
+#    ],
+#    "ditmas park": [
+#        [40.637225,     -73.972728],
+#        [40.64649,      -73.964725],
+#    ],
+#    "west lefferts gardens": [
+#        [40.65572,      -73.962728],
+#        [40.662068,     -73.956592],
+#    ],
+#    "kensington": [
+#        [40.630663,     -73.980232],
+#        [40.650006,     -73.97099],
+#    ],
+#    "prospect park south": [
+#        [40.643559,     -73.971234],
+#        [40.650592,     -73.964124],
+#    ]
 }
 
 # A list of neighborhood names to look for in the Craigslist neighborhood name field. If a listing doesn't fall into
 # one of the boxes you defined, it will be checked to see if the neighborhood name it was listed under matches one
 # of these.  This is less accurate than the boxes, because it relies on the owner to set the right neighborhood,
 # but it also catches listings that don't have coordinates (many listings are missing this info).
-NEIGHBORHOODS = ["park slope",
-                 "gowanus",
+NEIGHBORHOODS = [#"park slope",
+                 #"gowanus",
                  "fort greene",
                  "clinton hill",
                  "crown heights",
                  "bed-stuy"
                  "bedstuy",
-                 "south slope",
+                 #"south slope",
                  "bedford-stuyvesant",
-                 "prospect heights",
-                 "carroll gardens",
-                 "boerum hill",
-                 "dumbo",
-                 "brooklyn heights",
-                 "ditmas park",
-                 "ditmas",
-                 "lefferts",
-                 "lefferts gardens",
-                 "plg",
-                 "kensington",
-                 "prospect park south"]
+                 "prospect heights"#,
+                 #"carroll gardens",
+                 #"boerum hill",
+                 #"dumbo",
+                 #"brooklyn heights",
+                 #"ditmas park",
+                 #"ditmas",
+                 #"lefferts",
+                 #"lefferts gardens",
+                 #"plg",
+                 #"kensington",
+                 #"prospect park south"
+                ]
 
 ## Transit preferences
 
@@ -323,7 +324,7 @@ CRAIGSLIST_HOUSING_SECTION = 'nfa'
 SLEEP_INTERVAL = 20 * 60 # 20 minutes
 
 # Which slack channel to post the listings into.
-SLACK_CHANNEL = "#1_bed_apartments"
+SLACK_CHANNEL = "#apts"
 
 # The token that allows us to connect to slack.
 # Should be put in private.py, or set as an environment variable.
