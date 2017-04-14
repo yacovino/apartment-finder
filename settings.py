@@ -11,7 +11,7 @@ MAX_PRICE = 2300
 ## Bedrooms
 
 # Number of bedrooms
-BEDROOMS = 2
+BEDROOMS = 1
 
 ## Location preferences
 
@@ -324,7 +324,7 @@ CRAIGSLIST_HOUSING_SECTION = 'nfa'
 SLEEP_INTERVAL = 20 * 60 # 20 minutes
 
 # Which slack channel to post the listings into.
-SLACK_CHANNEL = "#2_bed_2300_no_fee"
+SLACK_CHANNEL = "#1_bed_2300_no_fee"
 
 # The token that allows us to connect to slack.
 # Should be put in private.py, or set as an environment variable.
