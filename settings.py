@@ -6,12 +6,12 @@ import os
 MIN_PRICE = 1000
 
 # The maximum rent you want to pay per month.
-MAX_PRICE = 2300
+MAX_PRICE = 2100
 
 ## Bedrooms
 
 # Number of bedrooms
-BEDROOMS = 1
+BEDROOMS = 2
 
 ## Location preferences
 
@@ -42,7 +42,7 @@ BOXES = {
         [40.671004,     -73.97275],
         [40.681875,     -73.959618],
     ],
-    "west_crown_heights": [
+    "crown_heights": [
         [40.663778,     -73.962193],
         [40.679792,     -73.947773],
     ],
@@ -54,7 +54,7 @@ BOXES = {
         [40.68207,      -73.969488],
         [40.693622,     -73.959017],
     ],
-    "west_bed_stuy": [
+    "bed_stuy": [
         [40.67875,      -73.959446],
         [40.694745,     -73.947344],
     ],
@@ -324,7 +324,7 @@ CRAIGSLIST_HOUSING_SECTION = 'nfa'
 SLEEP_INTERVAL = 20 * 60 # 20 minutes
 
 # Which slack channel to post the listings into.
-SLACK_CHANNEL = "#1_bed_2300_no_fee"
+SLACK_CHANNEL = "#apartments_no_fee"
 
 # The token that allows us to connect to slack.
 # Should be put in private.py, or set as an environment variable.
