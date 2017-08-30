@@ -101,7 +101,23 @@ BOXES = {
     "prospect park south": [
         [40.643559,     -73.971234],
         [40.650592,     -73.964124],
-    ]
+    ],
+    "greenpoint": [
+        [40.719616,     -73.962328],
+        [40.739059,     -73.938546],
+    ],
+    "east williamsburg": [
+        [40.701773,		-73.942087],
+        [40.727291,		-73.919859],
+	],
+	"bushwick": [
+		[40.679392,		-73.941482],
+		[40.709118,		-73.901361],
+	],
+	"williamsburg": [
+		[40.697933,		-73.969845],
+		[40.725177,		-73.936498],
+	]
 }
 
 # A list of neighborhood names to look for in the Craigslist neighborhood name field. If a listing doesn't fall into
@@ -131,13 +147,14 @@ NEIGHBORHOODS = ["park slope",
                  "prospect park south",
                  "bushwick",
                  "greenpoint",
-                 "east williamsburg"
+                 "east williamsburg",
+				 "williamsburg"
                 ]
 
 ## Transit preferences
 
 # The farthest you want to live from a transit stop.
-MAX_TRANSIT_DIST = 0.55 # kilometers
+MAX_TRANSIT_DIST = 0.5 # kilometers
 
 # Transit stations you want to check against.  Every coordinate here will be checked against each listing,
 # and the closest station name will be added to the result and posted into Slack.
