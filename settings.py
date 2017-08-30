@@ -3,15 +3,15 @@ import os
 ## Price
 
 # The minimum rent you want to pay per month.
-MIN_PRICE = 1300
+MIN_PRICE = 700
 
 # The maximum rent you want to pay per month.
-MAX_PRICE = 2100
+MAX_PRICE = 1300
 
 ## Bedrooms
 
 # Number of bedrooms
-BEDROOMS = 2
+BEDROOMS = 1
 
 ## Location preferences
 
@@ -344,7 +344,7 @@ CRAIGSLIST_HOUSING_SECTION = 'nfa'
 SLEEP_INTERVAL = 20 * 60 # 20 minutes
 
 # Which slack channel to post the listings into.
-SLACK_CHANNEL = "#apartments_ao_2"
+SLACK_CHANNEL = "#apartments_ao_1"
 
 # The token that allows us to connect to slack.
 # Should be put in private.py, or set as an environment variable.
