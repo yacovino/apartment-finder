@@ -6,7 +6,7 @@ import os
 MIN_PRICE = 750
 
 # The maximum rent you want to pay per month.
-MAX_PRICE = 1300
+MAX_PRICE = 1200
 
 ## Bedrooms
 
@@ -35,91 +35,91 @@ AREAS = ["brk"]
 BOXES = {
     "park_slope": [
      [40.657472,     -73.992406],
-     [40.684611,     -73.970175],
+     [40.684611,     -73.970175]
     ],
     "gowanus": [
         [40.66508,      -73.997211],
-        [40.678165,     -73.984938],
+        [40.678165,     -73.984938]
     ],
     "prospect_heights": [
         [40.671004,     -73.97275],
-        [40.681875,     -73.959618],
+        [40.681875,     -73.959618]
     ],
     "crown_heights": [
         [40.663778,     -73.962193],
-        [40.679792,     -73.947773],
+        [40.679792,     -73.947773]
     ],
     "fort_greene": [
         [40.682786,     -73.978415],
-        [40.693394,     -73.970175],
+        [40.693394,     -73.970175]
     ],
     "clinton_hill": [
         [40.68207,      -73.969488],
-        [40.693622,     -73.959017],
+        [40.693622,     -73.959017]
     ],
     "bed_stuy": [
         [40.67875,      -73.959446],
-        [40.694745,     -73.947344],
+        [40.694745,     -73.947344]
     ],
     "south_slope": [
         [40.642875,     -73.987341],
-        [40.660913,     -73.970947],
+        [40.660913,     -73.970947]
     ],
     "boerum hill": [
         [40.680638,     -73.994293],
-        [40.690344,     -73.977975],
+        [40.690344,     -73.977975]
     ],
     "carroll gardens": [
         [40.671976,     -74.00341],
-        [40.686447,     -73.989144],
+        [40.686447,     -73.989144]
     ],
     "cobble hill": [
         [40.683754,     -74.0007037],
-        [40.6915438,    -73.9923513],
+        [40.6915438,    -73.9923513]
     ],
     "downtown brooklyn": [
         [40.686561,     -73.992383],
-        [40.701431,     -73.978586],
+        [40.701431,     -73.978586]
     ],
     "brooklyn heights": [
         [40.689705,     -74.000205],
-        [40.703001,     -73.990441],
+        [40.703001,     -73.990441]
     ],
     "dumbo": [
         [40.7014434,    -73.9945775],
-        [40.7055669,    -73.9845085],
+        [40.7055669,    -73.9845085]
     ],
     "ditmas park": [
         [40.637225,     -73.972728],
-        [40.64649,      -73.964725],
+        [40.64649,      -73.964725]
     ],
     "west lefferts gardens": [
         [40.65572,      -73.962728],
-        [40.662068,     -73.956592],
+        [40.662068,     -73.956592]
     ],
     "kensington": [
         [40.630663,     -73.980232],
-        [40.650006,     -73.97099],
+        [40.650006,     -73.97099]
     ],
     "prospect park south": [
         [40.643559,     -73.971234],
-        [40.650592,     -73.964124],
+        [40.650592,     -73.964124]
     ],
     "greenpoint": [
         [40.719616,     -73.962328],
-        [40.739059,     -73.938546],
+        [40.739059,     -73.938546]
     ],
     "east williamsburg": [
         [40.701773,		-73.942087],
-        [40.727291,		-73.919859],
+        [40.727291,		-73.919859]
 	],
-#	"bushwick": [
-#		[40.679392,		-73.941482],
-#		[40.709118,		-73.901361],
-#	],
-	"williamsburg": [
-		[40.697933,		-73.969845],
-		[40.725177,		-73.936498],
+    "bushwick": [
+	[40.679392,		-73.941482],
+	[40.709118,		-73.901361]
+	],
+    "williamsburg": [
+	[40.697933,		-73.969845],
+	[40.725177,		-73.936498]
 	]
 }
 
@@ -148,16 +148,16 @@ NEIGHBORHOODS = ["park slope",
                  "plg",
                  "kensington",
                  "prospect park south",
-                 #"bushwick",
+                 "bushwick",
                  "greenpoint",
                  "east williamsburg",
-				 "williamsburg"
+		 "williamsburg"
                 ]
 
 ## Transit preferences
 
 # The farthest you want to live from a transit stop.
-MAX_TRANSIT_DIST = 0.5 # kilometers
+MAX_TRANSIT_DIST = 1 # kilometers
 
 # Transit stations you want to check against.  Every coordinate here will be checked against each listing,
 # and the closest station name will be added to the result and posted into Slack.
@@ -337,7 +337,7 @@ TRANSIT_STATIONS = {
 # For instance, https://sfbay.craigslist.org/search/apa find apartments for rent.
 # https://sfbay.craigslist.org/search/sub finds sublets.
 # You only need the last 3 letters of the URLs.
-CRAIGSLIST_HOUSING_SECTION = 'nfa'
+CRAIGSLIST_HOUSING_SECTION = 'apa'
 
 ## System settings
 
