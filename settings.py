@@ -337,7 +337,7 @@ TRANSIT_STATIONS = {
 # For instance, https://sfbay.craigslist.org/search/apa find apartments for rent.
 # https://sfbay.craigslist.org/search/sub finds sublets.
 # You only need the last 3 letters of the URLs.
-CRAIGSLIST_HOUSING_SECTION = 'apa'
+CRAIGSLIST_HOUSING_SECTION = 'sub'
 
 ## System settings
 
@@ -347,7 +347,7 @@ CRAIGSLIST_HOUSING_SECTION = 'apa'
 SLEEP_INTERVAL = 20 * 60 # 20 minutes
 
 # Which slack channel to post the listings into.
-SLACK_CHANNEL = "#apartments_ao_1"
+SLACK_CHANNEL = "#apartments_ao_s"
 
 # The token that allows us to connect to slack.
 # Should be put in private.py, or set as an environment variable.
