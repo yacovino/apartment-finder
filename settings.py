@@ -11,10 +11,10 @@ MAX_PRICE = 1200
 ## Bedrooms
 
 # Minimum number of bedrooms
-MIN_BEDROOMS = 0
+#MIN_BEDROOMS = 0
 
 # Maximum number of bedrooms
-MAX_BEDROOMS = 1
+#MAX_BEDROOMS = 1
 
 ## Location preferences
 
