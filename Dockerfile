@@ -7,7 +7,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update && \
     apt-get -y install \
-              python3.5.9 \
+              python3.5 \
               python3-pip \
               make \
               build-essential \
