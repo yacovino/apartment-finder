@@ -6,8 +6,8 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update && \
-    apt-get install software-properties-common && \
-    add-apt-repository ppa:deadsnakes/ppa && \
+    apt-get -y install software-properties-common && \
+    add-apt-repository -y ppa:deadsnakes/ppa && \
     apt-get update && \
     apt-get -y install \
               python3.6 \
