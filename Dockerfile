@@ -10,7 +10,7 @@ RUN apt-get update && \
     add-apt-repository -y ppa:deadsnakes/ppa && \
     apt-get update && \
     apt-get -y install \
-              python3.6 \
+              python3.7 \
               python3-pip \
               make \
               build-essential \
